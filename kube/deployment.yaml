@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: esr-todolist
+  namespace: development
+  labels:
+    app: todolist
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todolist
+  template:
+    metadata:
+      labels:
+        app: todolist
+    spec:
+      containers:
+      - name: todolist
+        image: esrysf/todolist:1.0
+        ports:
+        - containerPort: 8080
