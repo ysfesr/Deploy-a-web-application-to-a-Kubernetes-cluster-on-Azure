@@ -21,3 +21,4 @@ spec:
         image: esrysf/todolist:1.0
         ports:
         - containerPort: 8080
+          name: todolist-port
