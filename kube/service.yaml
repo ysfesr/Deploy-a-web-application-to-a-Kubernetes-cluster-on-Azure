@@ -6,8 +6,8 @@ metadata:
 spec:
   selector:
     app: todolist
+  type: LoadBalancer
   ports:
     - port: 80
       targetPort: todolist-port
       nodePort: 30001
-  type: LoadBalancer
