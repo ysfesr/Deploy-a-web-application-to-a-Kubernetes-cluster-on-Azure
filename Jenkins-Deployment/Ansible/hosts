@@ -1,0 +1,2 @@
+[all]
+<IP-Adresse> ansible_connection=ssh ansible_user=jenkins ansible_password=Admin@1234

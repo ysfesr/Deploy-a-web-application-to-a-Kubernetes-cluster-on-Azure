@@ -136,5 +136,7 @@ GitHub.sublime-settings
 !.vscode/extensions.json 
 .history
 
-.\Terraform\azure_secrets.tfvars
-./Terraform/azure_secrets.tfvars
+Jenkins-Deployment/.terraform.lock.hcl
+Jenkins-Deployment/.terraform
+Jenkins-Deployment/terraform.tfstate
+Jenkins-Deployment/terraform.tfstate.backup
