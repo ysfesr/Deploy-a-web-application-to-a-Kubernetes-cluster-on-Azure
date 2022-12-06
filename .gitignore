@@ -135,3 +135,6 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+.\Terraform\azure_secrets.tfvars
+./Terraform/azure_secrets.tfvars
