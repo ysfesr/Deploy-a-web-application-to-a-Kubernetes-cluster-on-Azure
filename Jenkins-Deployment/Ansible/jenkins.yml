@@ -1,6 +1,11 @@
 ---
 - hosts: all
   become: true
+  vars_files:
+    - secrets.yml
+  vars:
+    vault_identity_list: ['./secrets.yml']
+    vault_password_file: './vault-password-file'
   tasks:
     - name: Update apt-get repo and cache
       apt:
@@ -37,3 +42,25 @@
         name: jenkins
         state: started
         enabled: true
+
+    # Install Docker
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: latest
+    
+    - name: Enable Docker service
+      service:
+        name: docker
+        enabled: true
+
+    # Install Azure CLI
+    - name: Install Azure CLI
+      pip:
+        name: azure-cli
+        state: latest
+    
+    - name: Authenticate Azure CLI
+      shell: |
+        az login --service-principal -u {{ AZURE_CLIENT_ID }} -p {{AZURE_CLIENT_SECRET}} --tenant {{AZURE_TENANT_ID}}
+        az account set --subscription {{AZURE_SUBSCRIPTION_ID}}

@@ -140,3 +140,4 @@ Jenkins-Deployment/.terraform.lock.hcl
 Jenkins-Deployment/.terraform
 Jenkins-Deployment/terraform.tfstate
 Jenkins-Deployment/terraform.tfstate.backup
+Jenkins-Deployment/Ansible/vault-password-file
