@@ -22,7 +22,7 @@ pipeline {
     stage('Package as Docker Image') {
       steps {
 
-        sh 'docker build -t esr-todolist .'
+        sh 'docker build -t esr-todolist ./app'
 
       }
     }
@@ -38,9 +38,8 @@ pipeline {
     stage('Deploy to AKS') {
       steps {
         kubernetes.withCluster() {
-          kubernetes.configure(namespace: 'my-django-app')
+          kubernetes.configure(namespace: 'prod')
 
-          // Create deployment and service for Django app
           sh "kubectl apply -f deployment.yml"
           sh "kubectl apply -f service.yml"
       }

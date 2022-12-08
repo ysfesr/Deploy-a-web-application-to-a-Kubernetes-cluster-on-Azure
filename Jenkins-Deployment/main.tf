@@ -1,12 +1,12 @@
 # Create a resource group
 resource "azurerm_resource_group" "jenkins" {
-  name     = "jenkins-rg"
+  name     = "prod-rg"
   location = var.location
 }
 
 # Create a virtual network
 resource "azurerm_virtual_network" "jenkins" {
-  name                = "jenkins-vnet"
+  name                = "prod-vnet"
   address_space       = [var.network-vnet-cidr]
   location            = azurerm_resource_group.jenkins.location
   resource_group_name = azurerm_resource_group.jenkins.name
@@ -14,7 +14,7 @@ resource "azurerm_virtual_network" "jenkins" {
 
 # Create a subnet
 resource "azurerm_subnet" "jenkins" {
-  name                 = "jenkins-subnet"
+  name                 = "prod-subnet"
   resource_group_name  = azurerm_resource_group.jenkins.name
   virtual_network_name = azurerm_virtual_network.jenkins.name
   address_prefixes     = [var.network-subnet-cidr]

@@ -12,7 +12,15 @@
         update_cache: yes
         force_apt_get: yes
         cache_valid_time: 3600
-    # Install Java
+  
+    - name: Install Python 3
+      apt:
+        name: python3
+        state: present
+      
+    - name: Add Python 3 as default interpreter
+      command: update-alternatives --install /usr/bin/python python /usr/bin/python3
+
     - name: Install Java
       apt:
         name: default-jdk
