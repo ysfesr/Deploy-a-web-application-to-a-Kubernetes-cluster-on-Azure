@@ -37,7 +37,13 @@ pipeline {
 
     stage('Deploy to AKS') {
       steps {
-        // deploy the Docker image to AKS cluster
+        kubernetes.withCluster() {
+          kubernetes.configure(namespace: 'my-django-app')
+
+          // Create deployment and service for Django app
+          sh "kubectl apply -f deployment.yml"
+          sh "kubectl apply -f service.yml"
+      }
       }
     }
   }

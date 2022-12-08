@@ -2,24 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: esr-todolist
-  namespace: development
   labels:
-    app: todolist
+    app: esr-todolist
 
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: todolist
+      app: esr-todolist
   template:
     metadata:
       labels:
-        app: todolist
+        app: esr-todolist
     spec:
       containers:
-      - name: todolist
-        image: esrysf/todolist:1.0
-        imagePullPolicy: Never
+      - name: esr-todolist
+        image: acr-prod.azurecr.io/esr-todolist:latest
         ports:
         - containerPort: 8080
           name: todolist-port
