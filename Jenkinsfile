@@ -21,13 +21,17 @@ pipeline {
 
     stage('Package as Docker Image') {
       steps {
-        // Package the app as a Docker image
+
+        sh 'docker build -t esr-todolist .'
+
       }
     }
 
     stage('Push Docker Image to Registry') {
       steps {
-        // Push the Docker image to Azure Container Registry
+        azureContainerRegistryLogin('acr-prod')
+
+        azureContainerRegistryPush('acr-prod', 'esr-todolist')
       }
     }
 
