@@ -4,18 +4,18 @@ pipeline {
   stages {
     stage('Build and Test') {
       steps {
-        # Install dependencies
-        sh 'pip install -r requirements.txt'
+        // Install dependencies
+        sh 'pip install -r ./app/requirements.txt'
 
-        # Run Migration
-        sh 'python manage.py migrate'
+        // Run Migration
+        sh 'python3 ./app/manage.py migrate'
         
-        # Run unit tests
-        sh 'python manage.py test'
+         // Lint with flake8
+        sh 'python3 -m flake8 ./app --count --select=E9,F63,F7,F82 --show-source --statistics'
+        sh 'python3 -m flake8 ./app --count --ignore=E501 --exit-zero --max-complexity=10 --max-line-length=127 --statistics'
 
-        # Lint with flake8
-        sh 'flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics'
-        sh 'flake8 . --count --ignore=E501 --exit-zero --max-complexity=10 --max-line-length=127 --statistics'
+        // Run unit tests
+        sh 'python3 ./app/manage.py test'
       }
     }
 
@@ -27,23 +27,23 @@ pipeline {
       }
     }
 
-    stage('Push Docker Image to Registry') {
-      steps {
-        azureContainerRegistryLogin('acr-prod')
+    // stage('Push Docker Image to Registry') {
+    //   steps {
+    //     azureContainerRegistryLogin('acr-prod')
 
-        azureContainerRegistryPush('acr-prod', 'esr-todolist')
-      }
-    }
+    //     azureContainerRegistryPush('acr-prod', 'esr-todolist')
+    //   }
+    // }
 
-    stage('Deploy to AKS') {
-      steps {
-        kubernetes.withCluster() {
-          kubernetes.configure(namespace: 'prod')
+    // stage('Deploy to AKS') {
+    //   steps {
+    //     kubernetes.withCluster() {
+    //       kubernetes.configure(namespace: 'prod')
 
-          sh "kubectl apply -f deployment.yml"
-          sh "kubectl apply -f service.yml"
-      }
-      }
-    }
+    //       sh "kubectl apply -f deployment.yml"
+    //       sh "kubectl apply -f service.yml"
+    //   }
+    //   }
+    // }
   }
 }
