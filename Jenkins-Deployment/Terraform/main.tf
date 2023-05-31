@@ -59,7 +59,7 @@ resource "azurerm_network_security_group" "jenkins" {
   }
 
   security_rule {
-    name                       = "Jenkins UI"
+    name                       = "Jenkins-ui"
     priority                   = 1003
     direction                  = "Inbound"
     access                     = "Allow"
@@ -78,7 +78,7 @@ resource "azurerm_virtual_machine" "jenkins" {
   location              = azurerm_resource_group.jenkins.location
   resource_group_name   = azurerm_resource_group.jenkins.name
   network_interface_ids = [azurerm_network_interface.jenkins.id]
-  vm_size               = var.jenkins_vm_size 
+  vm_size               = var.jenkins_vm_size
 
   storage_os_disk {
     name              = "jenkins-osdisk"
@@ -89,8 +89,8 @@ resource "azurerm_virtual_machine" "jenkins" {
 
   storage_image_reference {
     publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts-gen2"
     version   = "latest"
   }
 
