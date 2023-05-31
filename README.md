@@ -5,4 +5,5 @@
  
  Once the pipeline is complete, we will be able to deploy the application to our Kubernetes cluster with minimal effort and ensure that it is running as expected.
 
+
 ![Architecture](./images/architecture.png)

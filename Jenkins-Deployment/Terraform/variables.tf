@@ -7,12 +7,12 @@ variable "location" {
 variable "network-vnet-cidr" {
   type        = string
   description = "The CIDR of the network VNET"
-  default = "10.0.0.0/16"
+  default     = "10.0.0.0/16"
 }
 variable "network-subnet-cidr" {
   type        = string
   description = "The CIDR for the network subnet"
-  default = "10.0.1.0/24"
+  default     = "10.0.1.0/24"
 }
 
 variable "jenkins_vm_size" {
@@ -24,10 +24,8 @@ variable "jenkins_vm_size" {
 variable "linux_admin_username" {
   type        = string
   description = "Username for Virtual Machine administrator account"
-  default     = "jenkins"
 }
 variable "linux_admin_password" {
   type        = string
   description = "Password for Virtual Machine administrator account"
-  default     = "Admin@1234"
 }
