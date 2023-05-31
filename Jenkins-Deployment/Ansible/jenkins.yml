@@ -8,6 +8,10 @@
 - hosts: jenkins_vm
   become: true
   roles:
+    - role: githubixx.kubectl
+
+    - role: geerlingguy.pip
+
     - role: geerlingguy.java
       vars:
         - java_packages:
