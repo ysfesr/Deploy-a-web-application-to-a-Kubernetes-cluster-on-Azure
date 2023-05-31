@@ -19,13 +19,19 @@ pipeline {
       }
     }
 
-    stage('Package as Docker Image') {
+    stage('Package as Docker Image and Push to Registry') {
       steps {
 
-        sh 'docker build -t esr-todolist ./app'
+        script {
+            docker.withRegistry('https://esrysf.azurecr.io', 'acr-esrysf-credentials') {
+                app.push("${env.BUILD_NUMBER}")
+                app.push("latest")
+            }
+        }
 
       }
     }
+
 
     // stage('Push Docker Image to Registry') {
     //   steps {
