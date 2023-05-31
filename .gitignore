@@ -136,8 +136,18 @@ GitHub.sublime-settings
 !.vscode/extensions.json 
 .history
 
-Jenkins-Deployment/.terraform.lock.hcl
-Jenkins-Deployment/.terraform
-Jenkins-Deployment/terraform.tfstate
-Jenkins-Deployment/terraform.tfstate.backup
-Jenkins-Deployment/Ansible/vault-password-file
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.lock.hcl
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
